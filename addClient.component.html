@@ -1,0 +1,51 @@
+<!--
+
+---------------- Assessment Part 2
+
+-->
+<section class="add-client-section">
+    <h2>Add A New Client</h2>
+    <form id="add-client-form" #addClientForm="ngForm" (submit)="onSubmit(addClientForm)">
+        <label for="addName">Name:</label>
+        <input type="text" [(ngModel)]="addName" name="addName" required>
+    
+        <label for="addDob">Date of Birth:</label>
+        <input type="date" [(ngModel)]="addDob" name="addDob" required>
+    
+        <label for="addGender">Gender:</label>
+        <select id="client-gender" [(ngModel)]="addGender" name="addGender" required>
+            <option value="">Select A Gender</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+          <option value="Unspecified">Unspecified</option>
+        </select>
+    
+        <label for="client-program">Fitness Program:</label>
+        <select id="client-program" [(ngModel)]="addProgram" name="program" required>
+            <option value="" disabled>Select A Program</option>
+            <option value="Fat Loss">Fat Loss</option>
+            <option value="Senior Fitness">Senior Fitness</option>
+            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="Pre/Postnatal Fitness">Pre/Postnatal Fitness</option>
+            <option value="Contest Preparation">Contest Preparation</option>
+            <option value="Overall Fitness">Overall Fitness</option>
+        </select>
+    
+        <label for="addContact">Contact Info:</label>
+        <input type="text" [(ngModel)]="addContact" name="addContact" required>
+    
+        <label for="addJoinDate">Join Date:</label>
+        <input type="date" [(ngModel)]="addJoinDate" name="addJoinDate" required>
+    
+        <label for="addEndDate">End Date:</label>
+        <input type="date" [(ngModel)]="addEndDate" name="addEndDate">
+    
+        <label for="addNotes">Special Health Notes:</label>
+        <input type="text" [(ngModel)]="addNotes" name="addNotes">
+    
+        <label for="addVip">VIP Client:</label>
+        <input type="checkbox" [(ngModel)]="addVip" name="addVip">
+    
+        <button id="submit-button" type="submit" [disabled]="!addClientForm.valid">Add Client</button>
+    </form>
+</section>

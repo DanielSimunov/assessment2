@@ -1,0 +1,198 @@
+<!--
+
+---------------- Assessment Part 2
+
+-->
+<section>
+    <div class="dashboard">
+        <div class="client-count">
+            <p class="count">{{ displayClientCount() }}</p>
+            <p>Clients</p>
+        </div>
+        <div class="client-count">
+          <p class="count">{{ displayVipCount() }}</p>
+          <p>VIP Clients</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="table-heading">
+        <h2>Clients</h2>
+        <div class="custom-select">
+            <select id="sort" [(ngModel)]="selectedSort" (ngModelChange)="sortClients()">
+                <option value="">Sort By</option>
+                <option value="id">ID</option>
+                <option value="name">Name</option>
+                <option value="oldest">Oldest</option>
+                <option value="newest">Newest</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<section>
+    <table id="client-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Program</th>
+            <th>Contact</th>
+            <th>Join Date</th>
+            <th>End Date</th>
+            <th>Notes</th>
+            <th>VIP Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr *ngFor="let client of clients">
+            <!------------------------------------------------------------------
+                Display Client Details
+            ------------------------------------------------------------------->
+            <!-- Client ID -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.clientID }}
+            </td>
+
+            <!-- Client Name -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.name }}
+            </td>
+
+            <!-- Client Date of Birth -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.dob.toLocaleString().split(",")[0] }}
+            </td>
+            
+            <!-- Client Gender -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.gender }}
+            </td>
+
+            <!-- Client Program -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.program }}
+            </td>
+
+            <!-- Client Contact -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.contact }}
+            </td>
+
+            <!-- Client Join Date -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.joinDate.toLocaleString().split(",")[0] }}
+            </td>
+
+            <!-- Client End Date -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.endDate.toLocaleString().split(",")[0] }}
+            </td>
+
+            <!-- Client Notes -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.notes }}
+            </td>
+
+            <!-- Client VIP Status -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                {{ client.isVIP ? "VIP" : "Regular" }}
+            </td>
+
+            <!-- Client Edit and Delete Buttons -->
+            <td *ngIf="editingClient?.clientID !== client.clientID">
+                <button (click)="editClient(client, 'table')">Edit</button>
+                <button (click)="openDeleteModal(client.clientID)">Delete</button>
+            </td>
+
+            <!-- 
+                Dsiplay edit form if the client is being edited 
+            -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                {{ client.clientID }}
+            </td>
+
+            <!------------------------------------------------------------------
+                If editing client, display the following
+            ------------------------------------------------------------------->
+            <!-- Client Input Name -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="text" [(ngModel)]="editingClient.name" required>
+            </td>
+
+            <!-- Client Input Date of Birth -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="date" [(ngModel)]="editingClient.dob" required>
+            </td>
+
+            <!-- Client Input Gender -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <select [(ngModel)]="editingClient.gender">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Unspecified">Unspecified</option>
+                </select>
+            </td>
+
+            <!-- Client Input Program -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <select [(ngModel)]="editingClient.program">
+                    <option value="Fat Loss">Fat Loss</option>
+                    <option value="Senior Fitness">Senior Fitness</option>
+                    <option value="Muscle Gain">Muscle Gain</option>
+                    <option value="Pre/Postnatal Fitness">Pre/Postnatal Fitness</option>
+                    <option value="Contest Preparation">Contest Preparation</option>
+                    <option value="Overall Fitness">Overall Fitness</option>
+                </select>
+            </td>
+
+            <!-- Client Input Contact -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="text" [(ngModel)]="editingClient.contact">
+            </td>
+
+            <!-- Client Input Join Date -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="date" [(ngModel)]="editingClient.joinDate">
+            </td>
+
+            <!-- Client Input End Date -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="date" [(ngModel)]="editingClient.endDate">
+            </td>
+
+            <!-- Client Input Notes -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="text" [(ngModel)]="editingClient.notes">
+            </td>
+
+            <!-- Client Input VIP Status-->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <input type="checkbox" [(ngModel)]="editingClient.isVIP">
+            </td>
+
+            <!-- Client Save, Edit, and Delete Buttons -->
+            <td *ngIf="editingClient && editingClient.clientID === client.clientID && editingContext === 'table'">
+                <button (click)="saveClient()">Save</button>
+                <button (click)="cancelEdit()">Cancel</button>
+                <button (click)="openDeleteModal(client.clientID)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+
+    <!-- Delete Confirmation Modal -->
+     <div *ngIf="isModalOpen" class="modal">
+        <div class="modal-content">
+            <h3>Delete Client</h3>
+            <p>Are you sure you want to delete "{{ clientToDelete?.name }}"</p>
+            <button (click)="closeDeleteModal()">Cancel</button>
+            <button (click)="deleteClient()">Delete</button>
+        </div>
+     </div>
+</section>

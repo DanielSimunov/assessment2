@@ -1,0 +1,79 @@
+<!--
+
+---------------- Assessment Part 2
+
+-->
+<section class="help-privacy-page">
+    <h2 style="font-weight: 400;">DigiFit Support</h2>
+
+    <div class="help-privacy-container">
+        <div class="privacy-box" (click)="togglePrivacy()">
+            <div class="privacy-statement">
+                <h3>Privacy Statement <i class="arrow down"></i></h3>
+            </div>
+            <div class="text-box-privacy" [ngClass]="{ 'active': isPrivacyActive }">
+                <p>Your privacy is important to us. This app is designed to store and manage client information securely. We are committed to ensuring that your data is handled responsibly and is protected against unauthorized access.</p>
+                
+                <h3>Data Collection and Use</h3>
+                <p>The app collects only the data you provide, such as client names, contact information, and fitness program details, for the purpose of managing your client database. This data is stored locally on your device and is not shared with third parties.</p>
+                
+                <h3>Data Security</h3>
+                <p>We implement basic security measures to safeguard the data stored in the app. However, users are responsible for ensuring their devices are secure to prevent unauthorized access to the app.</p>
+
+                <h3>User Control</h3>
+                <p>You have full control over the data in the app. You can add, update, or delete client information at any time. The app does not retain deleted data.</p>
+
+                <h3>Internet Connectivity</h3>
+                <p>This app operates offline and does not transmit or store data on external servers or online platforms.</p>
+
+                <h3>Contact Us</h3>
+                <p>If you have any questions or concerns about privacy, please contact us at <a href="" style="color: #fff;">support@digifit.com</a>.</p>
+            </div>
+        </div>
+        
+        <div class="help-box" (click)="toggleHelp()">
+            <div class="help-statement">
+                <h3>Help <i class="arrow down"></i></h3>
+            </div>
+            <div class="text-box-help" [ngClass]="{ 'active': isHelpActive }">
+                <p>This app is designed for personal trainers to efficiently manage their client database. With this tool, you can keep track and manage client details.</p>
+
+                <h3>Features & How to Use Them</h3>
+                <ol>
+                    <li>
+                        <strong>Add A Client</strong>
+                        <p>To add a new client, click the "Add Client" button and fill out the required fields, such as name, date of birth, gender, fitness program, and contact details. Once completed, click "Add Client."</p>
+                    </li>
+
+                    <li>
+                        <strong>Edit Client Details</strong>
+                        <p>Click the "Edit" button within the client's information to update their details. Make the necessary changes and save them.</p>
+                    </li>
+
+                    <li>
+                        <strong>Delete A Client</strong>
+                        <p>To remove a client, click the "Delete" button within the client's information (underneath the 'Edit' button). A confirmation message will appear to ensure no accidental deletions.</p>
+                    </li>
+
+                    <li>
+                        <strong>Set VIP Clients</strong>
+                        <p>Mark your most important clients as VIPs by toggling the VIP option in their details. This helps you prioritize them in your workflow.</p>
+                    </li>
+
+                    <li>
+                        <strong>Search For Clients</strong>
+                        <p>Use the search bar to quickly find specific clients by their ID number. This feature saves time when managing a large client list.</p>
+                    </li>
+
+                    <li>
+                        <strong>Sort Clients</strong>
+                        <p>Organize your client list by sorting them based on ID, name, join date, or other criteria.</p>
+                    </li>
+                </ol>
+
+                <h3>Contact Us</h3>
+                <p>If you have any questions or concerns about DigiFit, please contact us at <a href="" style="color: #fff;">support@digifit.com</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>

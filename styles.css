@@ -1,0 +1,182 @@
+/*
+
+        Assessment Part 1
+
+
+*/
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    padding: 0 .8rem;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+/*
+----- Form styles
+*/
+#add-client-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+}
+
+#add-client-form button, .search-filter-clients button {
+    grid-column: span 2;
+    width: 100%;
+    padding: .8rem;
+}
+
+#add-client-form #client-vip {
+    justify-self: end;
+    width: 20px;
+    height: 20px;
+}
+
+#add-client-form #client-notes {
+    height: 100px;
+}
+
+.search-filter-clients {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+
+/* 
+----- Table Styles
+*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    background-color: #ddd;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    padding: 1rem;
+}
+
+td button {
+    font-size: .9rem;
+}
+
+/*
+----- Modal Styles
+*/
+.modal {
+    display: none; /* Hide modal by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensure modal appears on top */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    margin: auto;
+}
+
+.modal-buttons button {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border: none;
+}
+#confirm-delete {
+    background-color: rgb(252, 12, 12);
+    color: white;
+}
+
+#cancel-delete {
+    background-color: grey;
+    color: white;
+}
+
+@media (max-width: 650px) {
+    th {
+        display: none;
+    }
+
+    td {
+        display: grid;
+        grid-template-columns: 30% auto;
+        padding: .7rem;
+    }
+
+    td button {
+        grid-column: span 2;
+        padding: .8rem 0;
+    }
+
+    td::before {
+        font-weight: 600;
+    }
+
+    td:first-child {
+        padding-top: 1rem;
+    }
+
+    td:last-child {
+        padding-bottom: 1rem;
+    }
+
+    td:nth-of-type(1)::before {
+        content: "ID:";
+    }
+    
+    td:nth-of-type(2)::before {
+        content: "Name:";
+    }
+    td:nth-of-type(3)::before {
+        content: "DOB:";
+    }
+    td:nth-of-type(4)::before {
+        content: "Gender:";
+    }
+    td:nth-of-type(5)::before {
+        content: "Program:";
+    }
+    td:nth-of-type(6)::before {
+        content: "Contact:";
+    }
+    td:nth-of-type(7)::before {
+        content: "Join Date:";
+    }
+    td:nth-of-type(8)::before {
+        content: "End Date:";
+    }
+    td:nth-of-type(9)::before {
+        content: "Notes:";
+    }
+    td:nth-of-type(10)::before {
+        content: "VIP:";
+    }
+
+}

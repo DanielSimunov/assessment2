@@ -1,0 +1,167 @@
+<!--
+
+---------------- Assessment Part 2
+
+-->
+<section class="search-container">
+    <h2>Search</h2>
+    <div class="search-id-container search">
+        <input type="number" id="search-id" placeholder="Search By Client ID" [(ngModel)]="searchId">
+        <button (click)="onSearch()" class="search-btn">Search Client</button>
+    </div>
+    <h3>Search Result:</h3>
+    <div *ngIf="searchPerformed && !searchResult">
+        <p>No client fround with ID {{ searchId }}</p>
+    </div>
+ </section>   
+
+<table *ngIf="searchPerformed && searchResult">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Program</th>
+            <th>Contact</th>
+            <th>Join Date</th>
+            <th>End Date</th>
+            <th>Notes</th>
+            <th>VIP Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+        
+    <tbody>
+        <tr>
+            <!------------------------------------------------------------------
+                Display search result
+            ------------------------------------------------------------------->
+            <!-- Client ID Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.clientID }}
+            </td>
+
+            <!-- Client Name Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.name }}
+            </td>
+
+            <!-- Client Date of Birth Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.dob.toLocaleString().split(",")[0] }}
+            </td>
+
+            <!-- Client Gender Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.gender }}
+            </td>
+
+            <!-- Client Program Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.program }}
+            </td>
+
+            <!-- Client Contact Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.contact }}
+            </td>
+
+            <!-- Client Join Date Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.joinDate.toLocaleString().split(",")[0] }}
+            </td>
+
+            <!-- Client End Date Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.endDate.toLocaleString().split(",")[0] }}
+            </td>
+
+            <!-- Client Notes Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.notes }}
+            </td>
+
+            <!-- Client VIP Status Search Result -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                {{ searchResult.isVIP ? "VIP" : "Regular" }}
+            </td>
+
+            <!-- Client Edit and Delete Buttons -->
+            <td *ngIf="editingClient?.clientID !== searchResult.clientID">
+                <button (click)="editClient(searchResult, 'search')">Edit</button>
+                <button (click)="openDeleteModal(searchResult.clientID)">Delete</button>
+            </td>
+
+            <!------------------------------------------------------------------
+                Display edit form when editing the client
+            ------------------------------------------------------------------->
+            <!-- Edit Client ID Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                {{ searchResult.clientID }}
+            </td>
+
+            <!-- Edit Client Name Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="text" [(ngModel)]="editingClient.name" required>
+            </td>
+
+            <!-- Edit Client Date of Birth Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="date" [(ngModel)]="editingClient.dob" required></td>
+
+            <!-- Edit Client Gender Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <select [(ngModel)]="editingClient.gender">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Unspecified">Unspecified</option>
+                </select>
+            </td>
+
+            <!-- Edit Client Program Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <select [(ngModel)]="editingClient.program">
+                    <option value="Fat Loss">Fat Loss</option>
+                    <option value="Senior Fitness">Senior Fitness</option>
+                    <option value="Muscle Gain">Muscle Gain</option>
+                    <option value="Pre/Postnatal Fitness">Pre/Postnatal Fitness</option>
+                    <option value="Contest Preparation">Contest Preparation</option>
+                    <option value="Overall Fitness">Overall Fitness</option>
+                </select>
+            </td>
+
+            <!-- Edit Client Contact Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="text" [(ngModel)]="editingClient.contact">
+            </td>
+
+            <!-- Edit Client Join Date Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="date" [(ngModel)]="editingClient.joinDate">
+            </td>
+
+            <!-- Edit Client End Date Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="date" [(ngModel)]="editingClient.endDate">
+            </td>
+
+            <!-- Edit Client Notes Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="text" [(ngModel)]="editingClient.notes">
+            </td>
+
+            <!-- Edit Client VIP Status Search Result -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <input type="checkbox" [(ngModel)]="editingClient.isVIP">
+            </td>
+
+            <!-- Client Save, Cancel, and Delete Buttons -->
+            <td *ngIf="editingClient && editingClient.clientID === searchResult.clientID && editingContext === 'search'">
+                <button (click)="saveClient()">Save</button>
+                <button (click)="cancelEdit()">Cancel</button>
+                <button (click)="openDeleteModal(searchResult.clientID)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
